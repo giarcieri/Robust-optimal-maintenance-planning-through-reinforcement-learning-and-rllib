@@ -11,7 +11,7 @@ from env import FractalEnv
 from hmm_AR_k_Tstud import HMMStates, TruncatedNormalEmissionsAR_k
 
 
-trace_file = '../../Fractal Values fitting with HMMs/trace_HMM_AR_k_Tstud.pickle'
+trace_file = 'trace.pickle'
 with open(trace_file, "rb") as fp:
     trace = pickle.load(fp)
 
@@ -47,12 +47,12 @@ def run_main(config_params=config_file):
     pp.pprint(config)
     ray.init()
     trainer = PPOTrainer(config=config)
-    for episode in range(10):
+    for episode in range(10000):
         results = trainer.train()
         pp.pprint(results)
-        if episode % 5 == 0:
-            checkpoint_dir = trainer.save(checkpoint_dir="./checkpoints")
-            print(f"Checkpoint saved in directory {checkpoint_dir}")
+        #if episode % 5 == 0:
+    checkpoint_dir = trainer.save(checkpoint_dir="./checkpoints")
+    print(f"Checkpoint saved in directory {checkpoint_dir}")
 
 
 if __name__ == '__main__':
