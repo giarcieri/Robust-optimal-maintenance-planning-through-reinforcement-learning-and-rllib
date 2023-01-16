@@ -1,0 +1,18 @@
+{
+    "num_gpus": 0,
+    "num_workers": 1,
+    "evaluation_num_workers": 1,
+    "num_envs_per_worker": 1,
+    "evaluation_interval": 1,
+    "lr": 0.001,
+    "horizon": 50,
+    "timesteps_per_iter": 50,
+    "model": {
+        "use_lstm": true,
+        "max_seq_len": 5,
+        "lstm_cell_size": 100,
+        "lstm_use_prev_action": true,
+        "fcnet_hiddens": [100],
+        "fcnet_activation": "linear"
+    }
+}
