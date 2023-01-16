@@ -129,5 +129,5 @@ dmypy.json
 .pyre/
 
 # my files
-*.iypnb
+*.ipynb
 *.pickle
