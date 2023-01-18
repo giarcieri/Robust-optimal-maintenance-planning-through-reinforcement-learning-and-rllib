@@ -1,5 +1,5 @@
 {
-    "num_gpus": 0,
+    "num_gpus": 1,
     "num_workers": 100,
     "evaluation_num_workers": 100,
     "num_envs_per_worker": 1,
