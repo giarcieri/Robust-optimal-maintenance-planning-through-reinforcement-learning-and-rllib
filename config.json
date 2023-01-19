@@ -1,18 +1,18 @@
 {
-    "num_gpus": 1,
-    "num_workers": 100,
-    "evaluation_num_workers": 100,
+    "num_gpus": 0,
+    "num_workers": 50,
+    "evaluation_num_workers": 50,
     "num_envs_per_worker": 1,
     "evaluation_interval": 1,
     "lr": 0.001,
     "horizon": 50,
-    "evaluation_duration": 1000,
+    "evaluation_duration": 500,
     "model": {
         "use_lstm": true,
         "max_seq_len": 5,
         "lstm_cell_size": 100,
         "lstm_use_prev_action": true,
-        "fcnet_hiddens": [100],
-        "fcnet_activation": "linear"
+        "fcnet_hiddens": [100, 100],
+        "fcnet_activation": "relu"
     }
 }
