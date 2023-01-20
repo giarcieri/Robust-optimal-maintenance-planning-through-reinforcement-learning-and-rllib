@@ -1,7 +1,7 @@
 #!/bin/bash
 #BSUB -n 100                 
-#BSUB -W 150:00                 
-#BSUB -R "rusage[mem=2048]"    
+#BSUB -W 75:00                 
+#BSUB -R "rusage[mem=4096]"    
 #BSUB -J rllib_main
 #BSUB -o output.txt
 
