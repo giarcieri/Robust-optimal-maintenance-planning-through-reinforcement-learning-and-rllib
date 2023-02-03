@@ -1,5 +1,5 @@
 {
-    "num_gpus": 1,
+    "num_gpus": 0,
     "num_workers": 50,
     "evaluation_num_workers": 50,
     "num_envs_per_worker": 1,
@@ -14,5 +14,8 @@
         "lstm_use_prev_action": true,
         "fcnet_hiddens": [100, 100],
         "fcnet_activation": "relu"
+    },
+    "evaluation_config": {
+        "explore": false
     }
 }

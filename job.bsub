@@ -1,8 +1,9 @@
 #!/bin/bash
-#BSUB -n 100                 
+#BSUB -n 50                 
 #BSUB -W 75:00                 
-#BSUB -R "rusage[mem=4096]"    
+#BSUB -R "rusage[mem=4096]"  
+#BSUB -R "span[hosts=1]"
 #BSUB -J rllib_main
 #BSUB -o output.txt
 
-python main.py
+export OMP_NUM_THREADS=50; python main.py

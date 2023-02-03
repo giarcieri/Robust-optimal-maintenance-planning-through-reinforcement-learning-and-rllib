@@ -45,15 +45,15 @@ def run_main(config_params=config_file):
     config['env'] = "fractal_env"
     config.update(config_params)
     pp.pprint(config)
-    ray.init()
+    ray.init(ignore_reinit_error=True, num_cpus=50)
     trainer = PPOTrainer(config=config)
-    for episode in range(10000):
+    for episode in range(20000):
         results = trainer.train()
         mean_rewards = results['evaluation']['episode_reward_mean']
-        with open("results_sbatch.txt", "a") as f:
+        with open("results.txt", "a") as f:
             f.write(f"{mean_rewards}\n")
-        pp.pprint(results)
         #if episode % 5 == 0:
+    pp.pprint(results)
     checkpoint_dir = trainer.save(checkpoint_dir="./checkpoints")
     print(f"Checkpoint saved in directory {checkpoint_dir}")
 
