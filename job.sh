@@ -4,7 +4,7 @@
 ##SBATCH -G 1
 #SBATCH -n 1
 #SBATCH --cpus-per-task=50
-#SBATCH --time=50:00:00
+#SBATCH --time=100:00:00
 #SBATCH --mem-per-cpu=4096
 #SBATCH --job-name=rllib_main_sbatch
 #SBATCH --output=output_sbatch.txt

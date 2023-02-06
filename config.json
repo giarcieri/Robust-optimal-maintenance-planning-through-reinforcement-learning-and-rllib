@@ -15,7 +15,15 @@
         "fcnet_hiddens": [100, 100],
         "fcnet_activation": "relu"
     },
+    "env_config": {
+        "domain_randomization": false,
+        "print_variables": false
+    },
     "evaluation_config": {
-        "explore": false
+        "explore": false,
+        "env_config": {
+            "domain_randomization": false,
+            "print_variables": true
+        }
     }
 }

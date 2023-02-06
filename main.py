@@ -32,8 +32,8 @@ reward_matrix = np.asarray([
 ])
 
 
-def env_creator(seed=0, domain_randomization=False):
-    return FractalEnv(trace=trace, reward_matrix=reward_matrix, seed=seed, domain_randomization=domain_randomization)
+def env_creator(env_config):
+    return FractalEnv(trace=trace, reward_matrix=reward_matrix, env_config=env_config)
 
 with open('config.json') as file:
     config_file = json.load(file)
@@ -45,12 +45,12 @@ def run_main(config_params=config_file):
     config['env'] = "fractal_env"
     config.update(config_params)
     pp.pprint(config)
-    ray.init(ignore_reinit_error=True, num_cpus=50)
+    ray.init()
     trainer = PPOTrainer(config=config)
     for episode in range(20000):
         results = trainer.train()
         mean_rewards = results['evaluation']['episode_reward_mean']
-        with open("results.txt", "a") as f:
+        with open("results_sbatch.txt", "a") as f:
             f.write(f"{mean_rewards}\n")
         #if episode % 5 == 0:
     pp.pprint(results)
