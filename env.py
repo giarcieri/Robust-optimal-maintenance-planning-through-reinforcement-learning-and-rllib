@@ -14,8 +14,6 @@ class FractalEnv(gym.Env):
         trace: Dict,
         reward_matrix: np.ndarray,
         #seed: int,
-        #domain_randomization: bool = False,
-        #print_variables = False
         env_config: EnvContext
     ) -> None:
 
@@ -23,6 +21,7 @@ class FractalEnv(gym.Env):
         self.reward_matrix = reward_matrix
         self.domain_randomization = env_config['domain_randomization']
         self.print_variables = env_config['print_variables'] 
+        self.worker_index = env_config.worker_index
         self.NegativeStudentT = pm.Bound(pm.StudentT, upper=0.0).dist
         #np.random.seed(seed=seed)
         self.action_space = gym.spaces.Discrete(3)
@@ -45,6 +44,8 @@ class FractalEnv(gym.Env):
         # sample initial obs
         self.obs = self.init_process(self.state)
 
+        self.t = 0
+
         return self.obs
 
     def step(
@@ -55,10 +56,12 @@ class FractalEnv(gym.Env):
         # sample reward
         reward = self.reward_matrix[action, self.state]
 
+        self.t += 1
+
         # print variables
-        if self.print_variables:
-            with open("variables.txt", "a") as f:
-                f.write(f'obs {self.obs}, state {self.state}, action {action}, reward {reward}\n')
+        if self.print_variables and self.worker_index == 1:
+            with open("variables_1.txt", "a") as f:
+                f.write(f'Timestep {self.t} obs {self.obs}, state {self.state}, action {action}, reward {reward}\n')
 
         # sample new state
         transition_matrices = self.params['p_transition']

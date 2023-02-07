@@ -50,7 +50,7 @@ def run_main(config_params=config_file):
     for episode in range(20000):
         results = trainer.train()
         mean_rewards = results['evaluation']['episode_reward_mean']
-        with open("results_sbatch.txt", "a") as f:
+        with open("results.txt", "a") as f:
             f.write(f"{mean_rewards}\n")
         #if episode % 5 == 0:
     pp.pprint(results)

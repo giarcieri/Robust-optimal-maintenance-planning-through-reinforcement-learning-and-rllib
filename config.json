@@ -9,11 +9,13 @@
     "evaluation_duration": 500,
     "model": {
         "use_lstm": true,
-        "max_seq_len": 5,
+        "max_seq_len": 3,
         "lstm_cell_size": 100,
         "lstm_use_prev_action": true,
-        "fcnet_hiddens": [100, 100],
-        "fcnet_activation": "relu"
+        "fcnet_hiddens": [100],
+        "fcnet_activation": "relu",
+        "post_fcnet_hiddens": [100],
+        "post_fcnet_activation": "relu"
     },
     "env_config": {
         "domain_randomization": false,
