@@ -60,7 +60,7 @@ class FractalEnv(gym.Env):
 
         # print variables
         if self.print_variables and self.worker_index == 1:
-            with open("variables_1.txt", "a") as f:
+            with open("variables.txt", "a") as f:
                 f.write(f'Timestep {self.t} obs {self.obs}, state {self.state}, action {action}, reward {reward}\n')
 
         # sample new state

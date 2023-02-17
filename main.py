@@ -47,12 +47,14 @@ def run_main(config_params=config_file):
     pp.pprint(config)
     ray.init()
     trainer = PPOTrainer(config=config)
-    for episode in range(20000):
+    for episode in range(30000):
         results = trainer.train()
-        mean_rewards = results['evaluation']['episode_reward_mean']
-        with open("results.txt", "a") as f:
-            f.write(f"{mean_rewards}\n")
-        #if episode % 5 == 0:
+        try:
+            mean_rewards = results['evaluation']['episode_reward_mean']
+            with open("results_lstm.txt", "a") as f:
+                f.write(f"{mean_rewards}\n")
+        except:
+            pass
     pp.pprint(results)
     checkpoint_dir = trainer.save(checkpoint_dir="./checkpoints")
     print(f"Checkpoint saved in directory {checkpoint_dir}")
