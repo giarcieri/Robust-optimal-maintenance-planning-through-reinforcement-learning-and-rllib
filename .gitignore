@@ -132,3 +132,6 @@ dmypy.json
 *.ipynb
 *.pickle
 results.txt
+output.txt
+output_sbatch.txt
+variables.txt
