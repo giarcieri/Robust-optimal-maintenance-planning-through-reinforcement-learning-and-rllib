@@ -131,3 +131,4 @@ dmypy.json
 # my files
 *.ipynb
 *.pickle
+results.txt

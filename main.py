@@ -66,8 +66,8 @@ def run_main(config_params=config_file):
         except:
             pass
     pp.pprint(results)
-    checkpoint_dir = trainer.save(checkpoint_dir="./checkpoints")
-    print(f"Checkpoint saved in directory {checkpoint_dir}")
+    #checkpoint_dir = trainer.save(checkpoint_dir="./checkpoints")
+    #print(f"Checkpoint saved in directory {checkpoint_dir}")
 
 
 if __name__ == '__main__':
