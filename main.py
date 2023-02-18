@@ -2,6 +2,7 @@ import pprint
 import json
 import ray
 import pickle
+import argparse
 import numpy as np
 from ray import tune
 from ray.rllib.agents.ppo.ppo import PPOTrainer
@@ -10,6 +11,15 @@ from ray.tune.registry import register_env
 from env import FractalEnv
 from hmm_AR_k_Tstud import HMMStates, TruncatedNormalEmissionsAR_k
 
+parser = argparse.ArgumentParser(description='rlfr-rllib')
+parser.add_argument('-m', '--model', type=str, metavar='',
+                    required=True, help='lstm or gtrxl')
+args = parser.parse_args()
+
+model = str(args.model)
+
+if model not in ['lstm', 'gtrxl']:
+    raise ValueError(f'model is not lstm or gtrxl but {model}')
 
 trace_file = 'trace.pickle'
 with open(trace_file, "rb") as fp:
@@ -35,7 +45,7 @@ reward_matrix = np.asarray([
 def env_creator(env_config):
     return FractalEnv(trace=trace, reward_matrix=reward_matrix, env_config=env_config)
 
-with open('config.json') as file:
+with open(f'config_{model}.json') as file:
     config_file = json.load(file)
 
 def run_main(config_params=config_file):
@@ -47,11 +57,11 @@ def run_main(config_params=config_file):
     pp.pprint(config)
     ray.init()
     trainer = PPOTrainer(config=config)
-    for episode in range(30000):
+    for iteration in range(30000):
         results = trainer.train()
         try:
             mean_rewards = results['evaluation']['episode_reward_mean']
-            with open("results_lstm.txt", "a") as f:
+            with open(f"results_{model}.txt", "a") as f:
                 f.write(f"{mean_rewards}\n")
         except:
             pass

@@ -6,4 +6,4 @@
 #BSUB -J rllib_main
 #BSUB -o output.txt
 
-export OMP_NUM_THREADS=50; python main.py
+export OMP_NUM_THREADS=50; python main.py --model gtrxl

@@ -1,0 +1,35 @@
+{
+    "num_gpus": 0,
+    "num_workers": 50,
+    "evaluation_num_workers": 50,
+    "num_envs_per_worker": 1,
+    "evaluation_interval": 5,
+    "lr": 0.001,
+    "horizon": 50,
+    "evaluation_duration": 500,
+    "clip_param": 0.3,
+    "gamma": 0.995,
+    "model": {
+        "use_lstm": true,
+        "max_seq_len": 3,
+        "lstm_cell_size": 100,
+        "lstm_use_prev_action": true,
+        "lstm_use_prev_reward": true,
+        "fcnet_hiddens": [100],
+        "fcnet_activation": "relu",
+        "post_fcnet_hiddens": [100],
+        "post_fcnet_activation": "relu",
+        "vf_share_layers": false
+    },
+    "env_config": {
+        "domain_randomization": false,
+        "print_variables": false
+    },
+    "evaluation_config": {
+        "explore": false,
+        "env_config": {
+            "domain_randomization": false,
+            "print_variables": false
+        }
+    }
+}
