@@ -136,5 +136,3 @@ output.txt
 output_sbatch.txt
 variables.txt
 checkpoints/
-results_lstm.txt
-results_gtrxl.txt

@@ -30,13 +30,15 @@
     },
     "env_config": {
         "domain_randomization": false,
-        "print_variables": false
+        "print_variables": false,
+        "return_belief": false
     },
     "evaluation_config": {
         "explore": false,
         "env_config": {
             "domain_randomization": false,
-            "print_variables": false
+            "print_variables": false,
+            "return_belief": false
         }
     }
 }

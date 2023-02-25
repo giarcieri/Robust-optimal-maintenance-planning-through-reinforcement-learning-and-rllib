@@ -13,12 +13,12 @@ from hmm_AR_k_Tstud import HMMStates, TruncatedNormalEmissionsAR_k
 
 parser = argparse.ArgumentParser(description='rlfr-rllib')
 parser.add_argument('-m', '--model', type=str, metavar='',
-                    required=True, help='lstm or gtrxl')
+                    required=True, help='lstm, gtrxl or belief')
 args = parser.parse_args()
 
 model = str(args.model)
 
-if model not in ['lstm', 'gtrxl']:
+if model not in ['lstm', 'gtrxl', 'belief']:
     raise ValueError(f'model is not lstm or gtrxl but {model}')
 
 trace_file = 'trace.pickle'
