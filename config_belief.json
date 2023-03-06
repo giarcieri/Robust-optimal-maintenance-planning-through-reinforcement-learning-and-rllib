@@ -3,16 +3,22 @@
     "num_workers": 50,
     "evaluation_num_workers": 50,
     "num_envs_per_worker": 1,
-    "evaluation_interval": 5,
-    "lr": 0.001,
+    "evaluation_interval": 1,
+    "lr": 0.0001,
     "horizon": 50,
     "evaluation_duration": 500,
-    "clip_param": 0.3,
-    "gamma": 0.995,
+    "clip_param": 0.01,
+    "gamma": 1,
     "env_config": {
         "domain_randomization": false,
         "print_variables": false,
         "return_belief": true
+    },
+    "model": {
+        "fcnet_hiddens": [100, 100, 100],
+        "fcnet_activation": "relu",
+        "post_fcnet_activation": "relu",
+        "vf_share_layers": false
     },
     "evaluation_config": {
         "explore": false,

@@ -1,6 +1,6 @@
 #!/bin/bash
 #BSUB -n 50                 
-#BSUB -W 250:00                 
+#BSUB -W 200:00                 
 #BSUB -R "rusage[mem=4096]"  
 #BSUB -R "span[hosts=1]"
 #BSUB -J rllib_main

@@ -61,13 +61,13 @@ def run_main(config_params=config_file):
         results = trainer.train()
         try:
             mean_rewards = results['evaluation']['episode_reward_mean']
-            with open(f"results_{model}.txt", "a") as f:
+            with open(f"results_{model}_2.txt", "a") as f:
                 f.write(f"{mean_rewards}\n")
         except:
             pass
     pp.pprint(results)
-    #checkpoint_dir = trainer.save(checkpoint_dir="./checkpoints")
-    #print(f"Checkpoint saved in directory {checkpoint_dir}")
+    checkpoint_dir = trainer.save(checkpoint_dir="./checkpoints")
+    print(f"Checkpoint saved in directory {checkpoint_dir}")
 
 
 if __name__ == '__main__':
