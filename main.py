@@ -4,6 +4,8 @@ import ray
 import pickle
 import argparse
 import numpy as np
+import os
+import shutil
 from ray import tune
 from ray.rllib.agents.ppo.ppo import PPOTrainer
 from ray.rllib.agents.ppo.ppo import DEFAULT_CONFIG
@@ -57,17 +59,22 @@ def run_main(config_params=config_file):
     pp.pprint(config)
     ray.init()
     trainer = PPOTrainer(config=config)
+    mean_rewards_best = -200000
+    if not os.path.exists(f"./checkpoints_{model}"):
+        os.makedirs(f"./checkpoints_{model}")
     for iteration in range(30000):
         results = trainer.train()
         try:
             mean_rewards = results['evaluation']['episode_reward_mean']
             with open(f"results_{model}_2.txt", "a") as f:
                 f.write(f"{mean_rewards}\n")
+            if mean_rewards > mean_rewards_best:
+                shutil.rmtree(f"./checkpoints_{model}")
+                checkpoint_dir = trainer.save(checkpoint_dir=f"./checkpoints_{model}")
+                mean_rewards_best = mean_rewards
         except:
             pass
     pp.pprint(results)
-    checkpoint_dir = trainer.save(checkpoint_dir="./checkpoints")
-    print(f"Checkpoint saved in directory {checkpoint_dir}")
 
 
 if __name__ == '__main__':

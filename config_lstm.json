@@ -4,10 +4,10 @@
     "evaluation_num_workers": 50,
     "num_envs_per_worker": 1,
     "evaluation_interval": 5,
-    "lr": 0.0001,
+    "lr": 0.0003,
     "horizon": 50,
     "evaluation_duration": 500,
-    "clip_param": 0.05,
+    "clip_param": 0.1,
     "gamma": 1,
     "model": {
         "use_lstm": true,
