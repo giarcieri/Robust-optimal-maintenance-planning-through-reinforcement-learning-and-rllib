@@ -131,8 +131,11 @@ dmypy.json
 # my files
 *.ipynb
 *.pickle
-results.txt
-output.txt
-output_sbatch.txt
+results*.txt
+output*.txt
 variables.txt
 checkpoints/
+checkpoints_*/
+*.png 
+*.npy
+evaluate_best_models.py

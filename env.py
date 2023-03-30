@@ -70,7 +70,7 @@ class FractalEnv(gym.Env):
         # print variables
         if self.print_variables and self.worker_index == 1:
             with open("variables.txt", "a") as f:
-                f.write(f'Timestep {self.t} obs {self.obs}, state {self.state}, action {action}, reward {reward}\n')
+                f.write(f'Timestep {self.t} obs {self.obs.round(4)}, state {self.state}, belief {self.belief.round(2)}, action {action}, reward {reward}\n')
 
         # sample new state
         transition_matrices = self.params['p_transition']

@@ -50,6 +50,8 @@ def env_creator(env_config):
 with open(f'config_{model}.json') as file:
     config_file = json.load(file)
 
+DR = config_file['env_config']['domain_randomization']
+
 def run_main(config_params=config_file):
     config = DEFAULT_CONFIG.copy()
     pp = pprint.PrettyPrinter(indent=4)
@@ -60,17 +62,17 @@ def run_main(config_params=config_file):
     ray.init()
     trainer = PPOTrainer(config=config)
     mean_rewards_best = -200000
-    if not os.path.exists(f"./checkpoints_{model}"):
-        os.makedirs(f"./checkpoints_{model}")
+    if not os.path.exists(f"./checkpoints_{model}_DR_{str(DR)}"):
+        os.makedirs(f"./checkpoints_{model}_DR_{str(DR)}")
     for iteration in range(30000):
         results = trainer.train()
         try:
             mean_rewards = results['evaluation']['episode_reward_mean']
-            with open(f"results_{model}_2.txt", "a") as f:
+            with open(f"results_{model}_DR_{str(DR)}.txt", "a") as f:
                 f.write(f"{mean_rewards}\n")
             if mean_rewards > mean_rewards_best:
-                shutil.rmtree(f"./checkpoints_{model}")
-                checkpoint_dir = trainer.save(checkpoint_dir=f"./checkpoints_{model}")
+                shutil.rmtree(f"./checkpoints_{model}_DR_{str(DR)}")
+                checkpoint_dir = trainer.save(checkpoint_dir=f"./checkpoints_{model}_DR_{DR}")
                 mean_rewards_best = mean_rewards
         except:
             pass

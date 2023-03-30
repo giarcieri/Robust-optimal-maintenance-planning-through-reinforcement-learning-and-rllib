@@ -1,0 +1,9 @@
+#!/bin/bash
+#BSUB -n 50                 
+#BSUB -W 2:00                 
+#BSUB -R "rusage[mem=4096]"  
+#BSUB -R "span[hosts=1]"
+#BSUB -J evaluation
+#BSUB -o output_evaluation.txt
+
+export OMP_NUM_THREADS=50; python evaluation.py --model belief --iterations 100000

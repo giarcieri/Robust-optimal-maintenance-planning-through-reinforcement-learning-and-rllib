@@ -10,7 +10,7 @@
     "clip_param": 0.02,
     "gamma": 1,
     "env_config": {
-        "domain_randomization": false,
+        "domain_randomization": true,
         "print_variables": false,
         "return_belief": true
     },
@@ -23,7 +23,7 @@
     "evaluation_config": {
         "explore": false,
         "env_config": {
-            "domain_randomization": false,
+            "domain_randomization": true,
             "print_variables": false,
             "return_belief": true
         }
